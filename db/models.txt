@@ -1,0 +1,12 @@
+Stop
+-number
+-name
+-side
+-direction
+-street_id
+-cross_street_id
+-latitude
+-longitude
+
+Street
+-name
