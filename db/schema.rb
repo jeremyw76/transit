@@ -34,4 +34,5 @@ ActiveRecord::Schema.define(version: 2019_10_05_172807) do
   end
 
   add_foreign_key "bus_stops", "streets"
+  add_foreign_key "bus_stops", "streets", column: "cross_street_id"
 end
