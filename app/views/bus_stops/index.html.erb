@@ -2,7 +2,6 @@
 
 <ul>
   <% @stops.each do |stop| %>
-    <li><%= link_to stop.number, stop_path(stop.number) %>|
-    <%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
+    <li><%= link_to stop.number, stop_path(stop.number) %>|<%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
   <% end %>
 </ul>
