@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_stop: one
+  variant: one
+  key: MyString
+  departure: 2019-10-06 12:01:31
+
+two:
+  bus_stop: two
+  variant: two
+  key: MyString
+  departure: 2019-10-06 12:01:31

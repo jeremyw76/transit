@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_06_033443) do
+ActiveRecord::Schema.define(version: 2019_10_06_170131) do
 
   create_table "bus_routes", force: :cascade do |t|
     t.integer "number"
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 2019_10_06_033443) do
     t.integer "key"
   end
 
+  create_table "variant_schedules", force: :cascade do |t|
+    t.integer "bus_stop_id", null: false
+    t.integer "variant_id", null: false
+    t.string "key"
+    t.datetime "departure"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bus_stop_id"], name: "index_variant_schedules_on_bus_stop_id"
+    t.index ["variant_id"], name: "index_variant_schedules_on_variant_id"
+  end
+
   create_table "variants", force: :cascade do |t|
     t.string "key"
     t.string "name"
@@ -54,5 +65,7 @@ ActiveRecord::Schema.define(version: 2019_10_06_033443) do
 
   add_foreign_key "bus_stops", "streets"
   add_foreign_key "bus_stops", "streets", column: "cross_street_id"
+  add_foreign_key "variant_schedules", "bus_stops"
+  add_foreign_key "variant_schedules", "variants"
   add_foreign_key "variants", "bus_routes"
 end
