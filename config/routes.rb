@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'streets', to: "streets#index"
+  get 'streets/:id' => 'streets#show', as: 'street', id: /\d+/
+
+  get 'stops', to: "bus_stops#index"
+  get 'stops/:id' => 'bus_stops#show', as: 'stop', id: /\d+/
 end

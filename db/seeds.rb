@@ -9,7 +9,7 @@ stops = JSON.parse(response.body)['stops']
 BusStop.destroy_all
 Street.destroy_all
 
-def get_or_add_street(street)
+def get_or_create_street(street)
   street_key = street['key']
   street_object = Street.find_by_key(street_key)
 
@@ -21,8 +21,8 @@ def get_or_add_street(street)
 end
 
 stops.each do |stop|
-  street = get_or_add_street(stop['street'])
-  cross_street = get_or_add_street(stop['cross-street'])
+  street = get_or_create_street(stop['street'])
+  cross_street = get_or_create_street(stop['cross-street'])
   position = stop['centre']['geographic']
 
   BusStop.create(

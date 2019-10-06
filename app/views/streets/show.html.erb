@@ -1,0 +1,15 @@
+<h1><%= @street.name %></h1>
+
+<h2>Stops</h2>
+<ul>
+  <% @street.bus_stops.each do |stop| %>
+    <li><%= link_to stop.number, stop_path(stop.number) %>|<%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
+  <% end %>
+</ul>
+
+<h2>Cross streets with stops</h2>
+<ul>
+  <% @cross_street_stops.each do |stop| %>
+    <li><%= link_to stop.number, stop_path(stop.number) %>|<%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
+  <% end %>
+</ul>

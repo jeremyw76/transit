@@ -1,0 +1,6 @@
+<%= paginate @streets %>
+<ul>
+  <% @streets.each do |street| %>
+    <li><%= link_to street.name, street %></li>
+  <% end %>
+</ul>
