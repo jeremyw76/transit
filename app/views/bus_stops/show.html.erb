@@ -7,8 +7,15 @@
 </table>
 
 <h2>Routes</h2>
-  <ul>
-    <% @routes.each do |route| %>
-      <li><%= route.number %>|<%= route.name %></li>
-    <% end %>
-  </ul>
+<ul>
+  <% @routes.each do |route| %>
+    <li><%= route.number %>|<%= route.name %></li>
+  <% end %>
+</ul>
+
+<h2>Schedule</h2>
+<ul>
+  <% @stop.variant_schedules.order('departure').each do |departure| %>
+    <li><%= departure.departure %>|Route <%= departure.variant.bus_route.number %>|<%= departure.variant.name %></li>
+  <% end %>
+</ul>
