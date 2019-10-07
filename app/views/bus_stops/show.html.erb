@@ -6,16 +6,20 @@
   <tr><td>Location:</td><td><%= @stop.street.name %> at <%= @stop.cross_street.name %></td></tr>
 </table>
 
-<h2>Routes</h2>
-<ul>
-  <% @routes.each do |route| %>
-    <li><%= route.number %>|<%= route.name %></li>
-  <% end %>
-</ul>
+<% unless @routes.empty? %>
+  <h2>Routes</h2>
+  <ul>
+    <% @routes.each do |route| %>
+      <li><%= route.number %>|<%= route.name %></li>
+    <% end %>
+  </ul>
 
-<h2>Schedule</h2>
-<ul>
-  <% @stop.variant_schedules.order('departure').each do |departure| %>
-    <li><%= departure.departure %>|Route <%= departure.variant.bus_route.number %>|<%= departure.variant.name %></li>
-  <% end %>
-</ul>
+  <h2>Schedule</h2>
+  <ul>
+    <% @stop.variant_schedules.order('departure').each do |departure| %>
+      <li><%= departure.departure %>|Route <%= departure.variant.bus_route.number %>|<%= departure.variant.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <h2>No stops today!<h2>
+<% end %>
