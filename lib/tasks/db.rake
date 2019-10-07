@@ -48,5 +48,32 @@ namespace :db do
   end
 
   task seed_schedules: :environment do
+    api_key = Rails.application.credentials.dig(:wpg_transit_api_key)
+    base_url = 'https://api.winnipegtransit.com/v3/stops/{stop_number}/schedule.json'
+    VariantSchedule.destroy_all
+
+    minimum_interval = 0.7
+
+    BusStop.all.each do |stop|
+      url = "%s?api-key=%s&start=00:00:00&end=23:59:59" % [base_url, api_key]
+      url["{stop_number}"] = stop.number.to_s
+      puts url
+
+      start_time = Time.now
+      response = RestClient::Request.execute(method: :get, url: url)
+      stop_schedule = JSON.parse(response.body)['stop-schedule']
+
+      stop_schedule['route-schedules'].each do |route_schedule|
+        route_schedule['scheduled-stops'].each do |variant_schedule|
+          key = variant_schedule['key']
+          departure = variant_schedule['times']['departure']['scheduled']
+          variant = Variant.where(key: variant_schedule['variant']['key']).first
+          VariantSchedule.create(bus_stop: stop, key: key, variant: variant, departure: departure)
+        end
+      end
+
+      while Time.now < start_time + minimum_interval
+      end
+    end
   end
 end
