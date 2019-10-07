@@ -5,5 +5,6 @@ class BusStopsController < ApplicationController
 
   def show
     @stop = BusStop.where(number: params[:id]).first
+    @routes = @stop.routes
   end
 end

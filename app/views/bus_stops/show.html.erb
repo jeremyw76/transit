@@ -5,3 +5,10 @@
   <tr><td>Stop name:</td><td><%= @stop.name %></td></tr>
   <tr><td>Location:</td><td><%= @stop.street.name %> at <%= @stop.cross_street.name %></td></tr>
 </table>
+
+<h2>Routes</h2>
+  <ul>
+    <% @routes.each do |route| %>
+      <li><%= route.number %>|<%= route.name %></li>
+    <% end %>
+  </ul>
