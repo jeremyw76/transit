@@ -1,0 +1,8 @@
+<h1>Routes</h1>
+<%= paginate @bus_routes %>
+
+<ul>
+  <% @bus_routes.each do |bus_route| %>
+    <li><%= link_to bus_route.number, bus_route_path(bus_route.number) %>|<%= bus_route.name %></li>
+  <% end %>
+</ul>

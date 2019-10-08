@@ -1,0 +1,8 @@
+<h1><%= @bus_route.name %></h1>
+
+<h2>Stops</h1>
+<ul>
+  <% @bus_route.stops.each do |bus_stop| %>
+    <li><%= link_to bus_stop.number, stop_path(bus_stop.number) %>|<%= bus_stop.name %></li>
+  <% end %>
+</ul>
