@@ -1,7 +1,20 @@
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Stops
+      </h1>
+    </div>
+  </div>
+</section>
 <%= paginate @stops %>
 
-<ul>
+
   <% @stops.each do |stop| %>
-    <li><%= link_to stop.number, stop_path(stop.number) %>|<%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
+  <div class="columns">
+    <div class="column is-one-fifth"><%= link_to stop.number, stop_path(stop.number) %></div>
+    <div class="column"><%= stop.name %></div>
+    <div class="column"><%= link_to stop.street.name, stop.street %></div>
+    <div class="column"><%= link_to stop.cross_street.name, stop.cross_street %></div>
+    </div>
   <% end %>
-</ul>

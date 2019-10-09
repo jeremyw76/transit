@@ -5,5 +5,6 @@ class BusRoutesController < ApplicationController
 
   def show
     @bus_route = BusRoute.where(number: params[:id]).first
+    @variants = @bus_route.variants
   end
 end
