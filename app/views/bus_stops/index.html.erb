@@ -4,17 +4,26 @@
       <h1 class="title">
         Stops
       </h1>
+      <%
+=begin%>
+ <div id='stop-search'>
+        {{message}}
+        <app></app>
+      </div>
+<%
+=end%>
     </div>
   </div>
 </section>
 <%= paginate @stops %>
 
+<% @stops.each do |stop| %>
+<div class="columns">
+  <div class="column is-one-fifth"><%= link_to stop.number, stop_path(stop.number) %></div>
+  <div class="column"><%= stop.name %></div>
+  <div class="column"><%= link_to stop.street.name, stop.street %></div>
+  <div class="column"><%= link_to stop.cross_street.name, stop.cross_street %></div>
+  </div>
+<% end %>
 
-  <% @stops.each do |stop| %>
-  <div class="columns">
-    <div class="column is-one-fifth"><%= link_to stop.number, stop_path(stop.number) %></div>
-    <div class="column"><%= stop.name %></div>
-    <div class="column"><%= link_to stop.street.name, stop.street %></div>
-    <div class="column"><%= link_to stop.cross_street.name, stop.cross_street %></div>
-    </div>
-  <% end %>
+

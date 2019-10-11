@@ -1,25 +1,33 @@
-<h1>Stop Information</h1>
+<h1 class="title">Stop Information</h1>
 
-<table class="table">
-  <tr><td>Stop number:</td><td><%= @stop.number %></td></tr>
-  <tr><td>Stop name:</td><td><%= @stop.name %></td></tr>
-  <tr><td>Location:</td><td><%= @stop.street.name %> at <%= @stop.cross_street.name %></td></tr>
-</table>
+<section class="section">
+  <div class="tile is-ancestor is-vertical">
+    <div class="tile box">
+      <table class="table">
+        <tr><td>Stop number:</td><td><%= @stop.number %></td></tr>
+        <tr><td>Stop name:</td><td><%= @stop.name %></td></tr>
+        <tr><td>Location:</td><td><%= @stop.street.name %> at <%= @stop.cross_street.name %></td></tr>
+      </table>
+      <img class="map" src="<%= @map_image_url %>" />
+    </div>
+    <div class="tile box is-vertical">
+      <% unless @routes.empty? %>
+        <h2 class="subtitle is-5">Routes</h2>
+        <table class="table">
+          <% @routes.each do |route| %>
+            <tr><td><%= route.number %></td><td><%= route.name %></td></tr>
+          <% end %>
+        </table>
 
-<% unless @routes.empty? %>
-  <h2>Routes</h2>
-  <ul>
-    <% @routes.each do |route| %>
-      <li><%= route.number %>|<%= route.name %></li>
-    <% end %>
-  </ul>
-
-  <h2>Schedule</h2>
-  <ul>
-    <% @stop.variant_schedules.order('departure').each do |departure| %>
-      <li><%= departure.departure %>|Route <%= departure.variant.bus_route.number %>|<%= departure.variant.name %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <h2>No stops today!<h2>
-<% end %>
+        <h2 class="subtitle is-5">Schedule</h2>
+        <table class="table">
+          <% @stop.variant_schedules.order('departure').each do |departure| %>
+            <tr><td><%= departure.departure.strftime("%H:%M") %></td><td><%= link_to "Route #{departure.variant.bus_route.number}", bus_route_path(departure.variant.bus_route.number) %></td><td><%= departure.variant.name %></td></tr>
+          <% end %>
+        </table>
+      <% else %>
+        <h2>No stops today!<h2>
+      <% end %>
+    </div>
+  </div>
+</section>
