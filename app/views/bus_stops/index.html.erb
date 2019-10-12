@@ -4,17 +4,25 @@
       <h1 class="title">
         Stops
       </h1>
-      <%
-=begin%>
- <div id='stop-search'>
-        {{message}}
-        <app></app>
-      </div>
-<%
-=end%>
     </div>
   </div>
 </section>
+
+<%= form_with(url: search_stops_path, method: "post") do %>
+  <div class="field has-addons">
+    <div class="control search-bar">
+      <%= text_field_tag :number, "", placeholder:"Stop number", class:"control input" %>
+    </div>
+    <div class="control">
+      <button type="submit" class="button is-success">
+        <span class="icon">
+          <i class="fas fa-search"></i>
+        </span>
+      </button>
+    </div>
+  </div>
+<% end %>
+
 <%= paginate @stops %>
 
 <% @stops.each do |stop| %>

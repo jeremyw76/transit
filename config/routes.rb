@@ -7,4 +7,6 @@ Rails.application.routes.draw do
 
   get 'stops', to: "bus_stops#index"
   get 'stops/:id' => 'bus_stops#show', as: 'stop', id: /\d+/
+
+  post 'stops/find' => 'bus_stops#search', as: 'search_stops'
 end

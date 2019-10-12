@@ -9,4 +9,12 @@ class BusStopsController < ApplicationController
     key = Rails.application.credentials.dig(:google_maps_api_key)
     @map_image_url = BusStopsHelper.sign_static_map_url(@stop)
   end
+
+  def search
+    stop = BusStop.where(number: params[:number]).first
+
+    if (stop != nil) then
+      redirect_to stop_path(stop.number)
+    end
+  end
 end
