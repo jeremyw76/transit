@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get 'stops/:id' => 'bus_stops#show', as: 'stop', id: /\d+/
 
   post 'stops/find' => 'bus_stops#search', as: 'search_stops'
+
+  get 'about', to: 'about#show'
+  get 'about/erd', to: 'about#erd', as: 'about_erd'
 end

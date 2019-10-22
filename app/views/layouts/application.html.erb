@@ -34,24 +34,10 @@
         <%= link_to "Routes", routes_path, class: "navbar-item" %>
 
         <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
-
+          <%= link_to "More", nil, class: "navbar-link" %>
           <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
-            </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
+            <%= link_to "About", about_path, class: "navbar-item" %>
+            <%= link_to "ERD", about_erd_path, class: "navbar-item" %>
           </div>
         </div>
       </div>
