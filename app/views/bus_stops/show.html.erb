@@ -8,7 +8,7 @@
         <tr><td>Stop name:</td><td><%= @stop.name %></td></tr>
         <tr><td>Location:</td><td><%= @stop.street.name %> at <%= @stop.cross_street.name %></td></tr>
       </table>
-      <img class="map" src="<%= @map_image_url %>" />
+      <%= image_tag @map_image_url, class: "map", alt: "Map" %>
     </div>
     <div class="tile box is-vertical">
       <% unless @routes.empty? %>

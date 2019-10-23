@@ -2,15 +2,13 @@
 <h2>Variants</h2>
 <div class="field is-grouped">
   <% @variants.each do |variant| %>
-    <p class="control">
-      <a class="button is-link">
-        <%= radio_button_tag :variant, variant.id %>
-        <%= label_tag :"variant_#{variant.id}", variant.name %>
-      </a>
-    </p>
+    <div class="control button is-link">
+      <%= radio_button_tag :variant, variant.id %>
+      <%= label_tag :"variant_#{variant.id}", variant.name %>
+    </div>
   <% end %>
 </div>
-<h2>Stops</h1>
+<h2>Stops</h2>
 <ul>
   <% @bus_route.stops.each do |bus_stop| %>
     <li><%= link_to bus_stop.number, stop_path(bus_stop.number) %>|<%= bus_stop.name %></li>
