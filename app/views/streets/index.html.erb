@@ -1,6 +1,29 @@
-<%= paginate @streets %>
-<ul>
-  <% @streets.each do |street| %>
-    <li><%= link_to street.name, street %></li>
+<div class="level">
+  <h1 class="title">Streets</h1>
+  <%= form_with(url: search_streets_path, method: "post") do %>
+    <div class="field has-addons">
+      <div class="control search-bar">
+        <%= text_field_tag :name, "", placeholder:"Street name", class:"control input" %>
+      </div>
+      <div class="control">
+        <button type="submit" class="button is-success">
+          <span class="icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </button>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
+
+<%= paginate @streets %>
+
+<section class="section">
+    <table class="table">
+      <% @streets.each do |street| %>
+        <tr>
+          <td><%= link_to street.name, street %></td>
+        </tr>
+      <% end %>
+    </table>
+</section>
