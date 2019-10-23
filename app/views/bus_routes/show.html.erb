@@ -1,16 +1,26 @@
-<h1><%= @bus_route.name %></h1>
-<h2>Variants</h2>
-<div class="field is-grouped">
-  <% @variants.each do |variant| %>
-    <div class="control button is-link">
-      <%= radio_button_tag :variant, variant.id %>
-      <%= label_tag :"variant_#{variant.id}", variant.name %>
+<h1 class="title"><%= @bus_route.name %></h1>
+
+<div class="tile box is-ancestor is-vertical">
+  <div class="tile is-child">
+    <h2 class="subtitle">Variants</h2>
+    <div class="field is-grouped is-grouped-multiline">
+      <% @variants.each do |variant| %>
+        <div class="control button is-link">
+          <%= radio_button_tag :variant, variant.id %>
+          <%= label_tag :"variant_#{variant.id}", variant.name %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+  </div>
+  <div>
+  <div class="tile is-child">
+    <h2 class="subtitle">Stops</h2>
+    <table class="table">
+      <% @bus_route.stops.each do |bus_stop| %>
+        <tr>
+          <td><%= link_to bus_stop.number, stop_path(bus_stop.number) %></td><td><%= bus_stop.name %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
-<h2>Stops</h2>
-<ul>
-  <% @bus_route.stops.each do |bus_stop| %>
-    <li><%= link_to bus_stop.number, stop_path(bus_stop.number) %>|<%= bus_stop.name %></li>
-  <% end %>
-</ul>
