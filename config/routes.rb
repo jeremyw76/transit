@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'routes', to: "bus_routes#index"
   get 'routes/:id' => 'bus_routes#show', as: 'bus_route', id:/\d+/
 
+  post 'routes/find' => 'bus_routes#search', as: 'search_routes'
+
   get 'streets', to: "streets#index"
   get 'streets/:id' => 'streets#show', as: 'street', id: /\d+/
 

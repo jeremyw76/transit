@@ -1,8 +1,29 @@
-<h1>Routes</h1>
+<div class="level">
+  <h1 class="title">Routes</h1>
+  <%= form_with(url: search_routes_path, method: "post") do %>
+    <div class="field has-addons">
+      <div class="control search-bar">
+        <%= text_field_tag :number, "", placeholder:"Route number", class:"control input" %>
+      </div>
+      <div class="control">
+        <button type="submit" class="button is-success">
+          <span class="icon">
+            <i class="fas fa-search"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
 <%= paginate @bus_routes %>
 
-<ul>
-  <% @bus_routes.each do |bus_route| %>
-    <li><%= link_to bus_route.number, bus_route_path(bus_route.number) %>|<%= bus_route.name %></li>
-  <% end %>
-</ul>
+<section class="section">
+    <table class="table">
+      <% @bus_routes.each do |bus_route| %>
+        <tr>
+          <td><%= link_to bus_route.number, bus_route_path(bus_route.number) %></td><td><%= bus_route.name %></td>
+        </tr>
+      <% end %>
+    </table>
+</section>
