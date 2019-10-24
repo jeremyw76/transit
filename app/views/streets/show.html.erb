@@ -1,15 +1,36 @@
-<h1><%= @street.name %></h1>
+<h1 class="title"><%= @street.name %></h1>
 
-<h2>Stops</h2>
-<ul>
-  <% @street.bus_stops.each do |stop| %>
-    <li><%= link_to stop.number, stop_path(stop.number) %>|<%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
-  <% end %>
-</ul>
-
-<h2>Cross streets with stops</h2>
-<ul>
-  <% @cross_street_stops.each do |stop| %>
-    <li><%= link_to stop.number, stop_path(stop.number) %>|<%= stop.name %>|<%= link_to stop.street.name, stop.street %>|<%= link_to stop.cross_street.name, stop.cross_street %></li>
-  <% end %>
-</ul>
+<section class="section">
+  <div class="box">
+    <h2 class="subtitle">Stops</h2>
+    <% unless @street.bus_stops.empty? %>
+      <table class="table">
+        <% @street.bus_stops.each do |stop| %>
+          <tr>
+            <td><%= link_to stop.number, stop_path(stop.number) %></td>
+            <td><%= stop.name %></td>
+            <td><%= link_to stop.cross_street.name, stop.cross_street %></td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <p>No stops on this street.</p>
+    <% end %>
+  </div>
+  <div class="box">
+    <h2 class="subtitle">Cross streets with stops</h2>
+    <% unless @cross_street_stops.empty? %>
+    <table class="table">
+      <% @cross_street_stops.each do |stop| %>
+        <tr>
+          <td><%= link_to stop.number, stop_path(stop.number) %></td>
+          <td><%= stop.name %></td>
+          <td><%= link_to stop.street.name, stop.street %></td>
+        </tr>
+      <% end %>
+    </table>
+    <% else %>
+      <p>No other nearby stops.</p>
+    <% end %>
+  </div>
+</section>
