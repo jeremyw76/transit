@@ -6,7 +6,10 @@
       <table class="table">
         <tr><td>Stop number:</td><td><%= @stop.number %></td></tr>
         <tr><td>Stop name:</td><td><%= @stop.name %></td></tr>
-        <tr><td>Location:</td><td><%= @stop.street.name %> at <%= @stop.cross_street.name %></td></tr>
+        <tr>
+          <td>Location:</td>
+          <td><%= link_to @stop.street.name, @stop.street %> at <%= link_to @stop.cross_street.name, @stop.cross_street %></td>
+        </tr>
       </table>
       <%= image_tag @map_image_url, class: "map", alt: "Map" %>
     </div>
