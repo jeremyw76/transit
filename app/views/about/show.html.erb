@@ -1,6 +1,33 @@
-<h1>About this project</h1>
+<h1 class="title is-5">About This Project</h1>
 
-<p>The Transit project is using a static dataset that was created by making several calls to the Winnipeg Transit API.
-As such, it is not providing current route or schedule information. Additionally, the schedule data was downloaded for a Sunday only. For this reason,
-some bus stops may not list any stop information.</p>
-<p>This project was created by Jeremy Wiebe, for the fall term of the Full Stack Web Development course of Red River College's Business Information Technology program.</p>
+<section class="tile is-ancestor">
+<div class="tile is-parent is-6">
+<div class="tile is-child">
+<p class="about">For some time, I’ve been interested in working with the Winnipeg Transit API. I use their app regularly and it’s not a bad app,
+  but I wonder if it could be improved. I am also interested in the algorithms that find routes from Point A to Point B.</p>
+<p class="about">For the purposes of this project, I will use a static set of the data provided by the Transit API. I am particularly
+  interested in storing routes, stops and schedules, and browsing the relationships between them.</p>
+<p class="about">The Winnipeg Transit API has an odd structure, in my opinion. There is no direct way to, for instance, find out
+  what all the stops are. Routes, on the other hand, can be queried en masse or by stop number, but the route data on its own
+  has no reference to stops. Variants variations in routes that share the same route number – they can be queried neither
+  by route nor en masse, but only by stop (or a comma-delimited list of stops). The variant “keys” can be parsed to discover
+  their corresponding routes. Finally, stop schedules can be queried one stop at a time or by a comma-delimited list of stops.
+  These schedules are the pivot that exists between stops and variants.</p>
+<p class="about">An additional challenge that exists is the API is rate-limited, and considering that there are over 5,100 stops, this rate
+  limit comes into play when pulling data from the API.</p>
+<p class="about">The relationship between all of the data is linear in nature. Bus stops have two associations with streets, both of which
+  are many-to-one in nature: bus stops have one street and one cross-street. Bus routes have a one-to-many relationship with variants.
+  Bus stops have a many-to-many relationship with variants, which means simply that many busses stop at many stops. In the database,
+  this relationship is represented through the variant schedule table, which contains references to both bus stops and variants, as well
+  as a distinguishing departure time. That is, each variant departs each bus stop at a distinct time. These relationships are all visualized in this
+  <%= link_to "ERD", about_erd_path %>.</p>
+</p>
+<p class="about">Using this data, it will be possible to create multiple views displaying bus stops, routes, schedules and streets. Additionally, it should
+  be possible to map bus routes through time, and to create some interesting experiments with route-finding algorithms. Depending on the time
+  available, I may be able to integrate visual maps. It might also be possible to integrate other data sources pertaining to landmarks and
+  locations throughout Winnipeg, though I suspect that I will have neither the time nor the will.</p>
+<br/>
+<p>This project was created by Jeremy Wiebe, for the fall 2019 term of the Full Stack Web Development course of Red River College's Business Information Technology program.</p>
+</div>
+</div>
+</section>
