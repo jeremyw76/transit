@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   get 'about', to: 'about#show'
   get 'about/erd', to: 'about#erd', as: 'about_erd'
+
+  root to: 'bus_stops#index'
 end

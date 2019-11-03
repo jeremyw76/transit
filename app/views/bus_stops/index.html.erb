@@ -1,27 +1,22 @@
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Stops
-      </h1>
-    </div>
+<div class="level">
+  <h1 class="title">Stops</h1>
+  <div class="level-item">
+    <%= form_with(url: search_stops_path, method: "post") do %>
+      <div class="field has-addons">
+        <div class="control search-bar">
+          <%= text_field_tag :number, "", placeholder:"Stop number", class:"control input" %>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-success">
+            <span class="icon">
+              <i class="fas fa-search"></i>
+            </span>
+          </button>
+        </div>
+      </div>
+    <% end %>
   </div>
-</section>
-
-<%= form_with(url: search_stops_path, method: "post") do %>
-  <div class="field has-addons">
-    <div class="control search-bar">
-      <%= text_field_tag :number, "", placeholder:"Stop number", class:"control input" %>
-    </div>
-    <div class="control">
-      <button type="submit" class="button is-success">
-        <span class="icon">
-          <i class="fas fa-search"></i>
-        </span>
-      </button>
-    </div>
-  </div>
-<% end %>
+</div>
 
 <%= paginate @stops %>
 

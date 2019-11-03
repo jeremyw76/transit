@@ -1,19 +1,21 @@
 <div class="level">
   <h1 class="title">Routes</h1>
-  <%= form_with(url: search_routes_path, method: "post") do %>
-    <div class="field has-addons">
-      <div class="control search-bar">
-        <%= text_field_tag :number, "", placeholder:"Route number", class:"control input" %>
+  <div class="level-item">
+    <%= form_with(url: search_routes_path, method: "post") do %>
+      <div class="field has-addons">
+        <div class="control search-bar">
+          <%= text_field_tag :number, "", placeholder:"Route number", class:"control input" %>
+        </div>
+        <div class="control">
+          <button type="submit" class="button is-success">
+            <span class="icon">
+              <i class="fas fa-search"></i>
+            </span>
+          </button>
+        </div>
       </div>
-      <div class="control">
-        <button type="submit" class="button is-success">
-          <span class="icon">
-            <i class="fas fa-search"></i>
-          </span>
-        </button>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 <%= paginate @bus_routes %>
